@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using GLib;
@@ -45,6 +46,20 @@ public static class ObjectWrapper
             throw new Exception($"Type {typeof(T).FullName} does not define an IntPtr constructor. This could mean improperly defined bindings");
 
         return (T) ctor.Invoke(new object[] { handle, ownedRef });
+    }
+
+    public static bool TryWrapHandle<T>(IntPtr handle, bool ownedRef, [NotNullWhen(true)] out T? o) where T : class, IHandle
+    {
+        o = default;
+        try
+        {
+            o = WrapHandle<T>(handle, ownedRef);
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 
     public static T? WrapNullableInterfaceHandle<T>(IntPtr handle, bool ownedRef) where T : class, IHandle

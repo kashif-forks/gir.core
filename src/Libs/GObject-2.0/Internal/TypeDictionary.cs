@@ -72,7 +72,7 @@ public static class TypeDictionary
     /// <param name="type">The type of a class that is equal or derived from <see cref="GObject.Object"/></param>
     /// <returns>The equivalent GType</returns>
     /// <exception cref="TypeNotFoundException">The given type is not registered in the type dictionary. The caller should register it themselves.</exception>
-    internal static Type GetGType(System.Type type)
+    public static Type GetGType(System.Type type)
     {
         // Check we are a GObject
         Debug.Assert(
@@ -92,7 +92,7 @@ public static class TypeDictionary
     /// </summary>
     /// <param name="gtype">A type from the GType type system</param>
     /// <returns>The equivalent managed type</returns>
-    internal static System.Type GetSystemType(Type gtype)
+    public static System.Type GetSystemType(Type gtype)
     {
         if (_reverseTypeDict.TryGetValue(gtype, out System.Type? sysType))
             return sysType;

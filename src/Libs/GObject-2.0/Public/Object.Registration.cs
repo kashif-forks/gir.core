@@ -49,7 +49,8 @@ public partial class Object
             // Do actual registration
             Type gtype = TypeRegistrar.RegisterGType(
                 qualifiedName: QualifyName(type),
-                parentType: TypeDictionary.GetGType(baseType)
+                parentType: TypeDictionary.GetGType(baseType),
+                type: type
             );
 
             TypeDictionary.Add(type, gtype);
