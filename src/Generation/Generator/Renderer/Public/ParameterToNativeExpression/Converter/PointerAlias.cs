@@ -18,10 +18,8 @@ internal class PointerAlias : ToNativeParameterConverter
                 break;
             case GirModel.Direction.InOut:
                 throw new Exception("PointerAlias: InOut not yet implemented");
-                break;
             case GirModel.Direction.Out:
                 throw new Exception("PointerAlias: Out not yet implemented");
-                break;
         }
     }
 
@@ -30,8 +28,8 @@ internal class PointerAlias : ToNativeParameterConverter
         var direction = GetDirection(parameter.Parameter);
         var parameterName = Model.Parameter.GetName(parameter.Parameter);
 
-        parameter.SetSignatureName(parameterName);
-        parameter.SetCallName(direction + parameterName);
+        parameter.SetSignatureName(() => parameterName);
+        parameter.SetCallName(() => direction + parameterName);
     }
 
     private static string GetDirection(GirModel.Parameter parameter) => parameter switch
