@@ -1,6 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="MSTest.Sdk">
   <PropertyGroup>
     <RootNamespace>Gtk.Tests</RootNamespace>
+
+    <TestingPlatformShowTestsFailure>true</TestingPlatformShowTestsFailure>
+    <TestingPlatformCaptureOutput>false</TestingPlatformCaptureOutput>
   </PropertyGroup>
 
   <ItemGroup>
@@ -8,7 +11,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\..\..\Libs\Gtk-4.0\Gtk-4.0.csproj" />
   </ItemGroup>
